@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychology - Week 6 | Biological & Psychodynamic Approaches</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a3a5c;
+            color: #000;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .aru-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+        .aru-bird { font-size: 1.2em; font-weight: 900; color: #1a3a5c; letter-spacing: 1px; }
+        .aru-text { border-left: 3px solid #1a3a5c; padding-left: 10px; }
+        .aru-text .aru-name { font-size: 1em; font-weight: 900; color: #1a3a5c; letter-spacing: 1px; }
+        .aru-text .aru-sub { font-size: 0.75em; color: #2a5a8c; font-style: italic; }
+
+```
+    .slide {
+        background: #f0f4f8;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        flex-grow: 1;
+        display: none;
+    }
+    .slide.active { display: block; animation: fadeIn 0.5s; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    h1 { font-size: 2em; margin-bottom: 20px; color: #1a3a5c; border-bottom: 4px solid #1a3a5c; padding-bottom: 10px; }
+    h2 { font-size: 1.5em; margin-bottom: 15px; color: #1a3a5c; }
+    h3 { font-size: 1.1em; margin: 16px 0 8px 0; color: #1a3a5c; }
+
+    .topic-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8em;
+        font-weight: bold;
+        margin-bottom: 14px;
+        letter-spacing: 0.5px;
+    }
+    .bio-badge { background: #c8e6c9; color: #1b5e20; }
+    .psycho-badge { background: #e1bee7; color: #4a148c; }
+    .both-badge { background: #bbdefb; color: #0d47a1; }
+
+    .simple-box {
+        background: #ffffff;
+        padding: 14px 18px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border-left: 4px solid #1a3a5c;
+        font-size: 1.02em;
+    }
+    .simple-box small { color: #2a5a8c; font-size: 0.88em; display: block; margin-top: 4px; }
+
+    .example-box {
+        background: #e8f0fe;
+        border-left: 5px solid #1a3a5c;
+        padding: 18px;
+        margin: 16px 0;
+        border-radius: 8px;
+    }
+    .example-box h3 { margin-top: 0; color: #1a3a5c; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 14px 0; }
+
+    .highlight { background: #FFD700; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
+
+    .definition-toggle {
+        background: #1a3a5c;
+        color: white;
+        border: none;
+        padding: 11px 22px;
+        font-size: 1em;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 12px 0;
+        transition: all 0.3s;
+        display: inline-block;
+    }
+    .definition-toggle:hover { background: #2a5a8c; transform: translateY(-2px); }
+
+    .definition-content {
+        display: none;
+        background: #fff;
+        padding: 18px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border: 2px solid #1a3a5c;
+        font-size: 0.97em;
+        line-height: 1.75;
+    }
+    .definition-content.show { display: block; animation: slideDown 0.3s ease; }
+    @keyframes slideDown { from { opacity:0; } to { opacity:1; } }
+
+    .ref-tag {
+        font-size: 0.78em;
+        color: #2a5a8c;
+        font-style: italic;
+        margin-top: 12px;
+        padding-top: 8px;
+        border-top: 1px dashed #1a3a5c;
+    }
+
+    .mcq-section {
+        background: #e3f2fd;
+        padding: 22px;
+        margin: 20px 0 0 0;
+        border-radius: 10px;
+        border: 3px solid #1a3a5c;
+    }
+    .mcq-question { font-size: 1.1em; font-weight: bold; margin-bottom: 14px; color: #1a3a5c; }
+    .mcq-options { list-style: none; padding: 0; }
+    .mcq-option {
+        background: white;
+        padding: 12px 16px;
+        margin: 8px 0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.25s;
+        border: 2px solid transparent;
+        font-size: 1em;
+    }
+    .mcq-option:hover { background: #bbdefb; border-color: #1a3a5c; transform: translateX(5px); }
+    .mcq-option.correct  { background: #90EE90; border-color: #228B22; }
+    .mcq-option.incorrect{ background: #FFB6C6; border-color: #DC143C; }
+
+    .mcq-feedback {
+        display: none;
+        margin-top: 14px;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 0.97em;
+        line-height: 1.6;
+    }
+    .mcq-feedback.show { display: block; }
+    .mcq-feedback.correct-feedback  { background: #D4EDDA; border: 2px solid #28A745; color: #155724; }
+    .mcq-feedback.incorrect-feedback{ background: #F8D7DA; border: 2px solid #DC3545; color: #721C24; }
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 28px;
+        padding-top: 18px;
+        border-top: 2px solid #1a3a5c;
+    }
+    .nav-btn {
+        background: #1a3a5c;
+        color: white;
+        border: none;
+        padding: 13px 28px;
+        font-size: 1.1em;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .nav-btn:hover:not(:disabled) { background: #2a5a8c; transform: scale(1.05); }
+    .nav-btn:disabled { background: #A9A9A9; cursor: not-allowed; }
+    .progress { text-align: center; font-size: 1.2em; color: #1a3a5c; font-weight: bold; align-self: center; }
+
+    @media (max-width: 600px) {
+        .two-col, .three-col { grid-template-columns: 1fr; }
+        h1 { font-size: 1.5em; }
+        .slide { padding: 25px; }
+    }
+</style>
+```
+
+</head>
+<body>
+<div class="container">
+
+<!-- SLIDE 1 — Title & Overview -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge both-badge">Biological &amp; Psychodynamic Psychology</span>
+    <h1>Psychology — Week 6</h1>
+    <h2>MOD008113 (ELSCI09)</h2>
+    <div class="two-col">
+        <div class="example-box">
+            <h3>🧠 Biological Psychology</h3>
+            <p>• Basic assumptions of the biological approach</p>
+            <p>• The nervous system (CNS &amp; PNS)</p>
+            <p>• Brain structure and function</p>
+            <p>• Neurons, synapses and action potentials</p>
+            <p>• Neurotransmitters and behaviour</p>
+            <p>• Research methods</p>
+        </div>
+        <div class="example-box">
+            <h3>🛋️ Psychodynamic Approach</h3>
+            <p>• Freud's unconscious mind</p>
+            <p>• Free association, dream interpretation, Freudian slips</p>
+            <p>• Id, Ego and Superego</p>
+            <p>• Defence mechanisms</p>
+            <p>• 5 Psychosexual stages of development</p>
+            <p>• Research methods and evaluation</p>
+        </div>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: Which of these BEST describes the key difference between the biological and psychodynamic approaches?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Both approaches attempt to explain human behaviour — they just focus on very different causes.', 'Biological psychology explains behaviour through brain, biology and chemistry. Psychodynamic explains it through unconscious mental forces — they are complementary approaches to understanding the mind.')">A) One explains behaviour and the other does not</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! Biological psychology focuses on physical brain processes. Psychodynamic focuses on unconscious mental forces — two very different levels of explanation.', 'Biological psychology explains behaviour through brain, biology and chemistry. Psychodynamic explains it through unconscious mental forces — they are complementary approaches to understanding the mind.')">B) Biological = brain and biology; Psychodynamic = unconscious mind</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Freud is associated with the psychodynamic approach, not the biological approach.', 'Biological psychology explains behaviour through brain, biology and chemistry. Psychodynamic explains it through unconscious mental forces — they are complementary approaches to understanding the mind.')">C) Freud created the biological approach</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Both are recognised scientific or clinical approaches — neither is considered invalid.', 'Biological psychology explains behaviour through brain, biology and chemistry. Psychodynamic explains it through unconscious mental forces — they are complementary approaches to understanding the mind.')">D) The psychodynamic approach is not a valid approach</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- SLIDE 2 — Biological: Basic Assumptions & The Nervous System -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge bio-badge">Biological Psychology</span>
+    <h1>Basic Assumptions &amp; The Nervous System</h1>
+    <div class="simple-box"><strong>Basic Assumption:</strong> All behaviour, thoughts and emotions have a physical/biological basis — they can be explained by brain activity, genetics and neurochemistry.</div>
+    <div class="two-col">
+        <div class="simple-box">
+            <strong>Central Nervous System (CNS)</strong><br>
+            Brain + Spinal Cord<br>
+            <small>Controls and processes all information</small>
+        </div>
+        <div class="simple-box">
+            <strong>Peripheral Nervous System (PNS)</strong><br>
+            Carries messages to and from the CNS<br>
+            <small>Somatic (voluntary) + Autonomic (involuntary)</small>
+        </div>
+        <div class="simple-box">
+            <strong>Sympathetic NS</strong><br>
+            Arouses body to expend energy<br>
+            <small>Fight or flight response</small>
+        </div>
+        <div class="simple-box">
+            <strong>Parasympathetic NS</strong><br>
+            Calms body to conserve energy<br>
+            <small>Rest and digest response</small>
+        </div>
+    </div>
+    <button class="definition-toggle" onclick="toggleDef(this)">Show More Information</button>
+    <div class="definition-content">
+        <p><strong>The Autonomic Nervous System</strong> has two divisions that oppose each other:</p>
+        <p>• <strong>Sympathetic:</strong> dilates pupils, increases heart rate, relaxes airways, inhibits digestion — prepares the body for action</p>
+        <p>• <strong>Parasympathetic:</strong> constricts pupils, slows heartbeat, stimulates digestion — restores the body to a resting state</p>
+        <br>
+        <p><strong>The Somatic Nervous System</strong> controls voluntary muscles and transmits sensory information to the CNS — it is under conscious control.</p>
+        <br>
+        <p>The spinal cord acts as the highway connecting the brain to the rest of the body, allowing rapid reflex actions even before the brain can process the information.</p>
+        <p class="ref-tag">Source: ARU College — Biological Psychology, Week 6 Lecture</p>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: Which part of the nervous system prepares the body for fight or flight?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The parasympathetic nervous system does the opposite — it calms the body and conserves energy.', 'The SYMPATHETIC nervous system arouses the body to expend energy — it triggers the fight or flight response by increasing heart rate, dilating pupils and releasing adrenaline.')">A) Parasympathetic nervous system</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The somatic nervous system controls voluntary movement — it is not responsible for fight or flight responses.', 'The SYMPATHETIC nervous system arouses the body to expend energy — it triggers the fight or flight response by increasing heart rate, dilating pupils and releasing adrenaline.')">B) Somatic nervous system</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! The sympathetic nervous system arouses the body — increasing heart rate, dilating pupils and releasing adrenaline to prepare for action.', 'The SYMPATHETIC nervous system arouses the body to expend energy — it triggers the fight or flight response by increasing heart rate, dilating pupils and releasing adrenaline.')">C) Sympathetic nervous system</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The central nervous system is the brain and spinal cord — the fight or flight response is triggered by the autonomic nervous system.', 'The SYMPATHETIC nervous system arouses the body to expend energy — it triggers the fight or flight response by increasing heart rate, dilating pupils and releasing adrenaline.')">D) Central nervous system</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- SLIDE 3 — Biological: The Brain -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge bio-badge">Biological Psychology</span>
+    <h1>The Brain — Structure &amp; Function</h1>
+    <div class="two-col">
+        <div class="simple-box"><strong>Frontal Lobe</strong> — Motor control, problem solving, speech production (Broca's area)<small>Damage = difficulty speaking or planning</small></div>
+        <div class="simple-box"><strong>Parietal Lobe</strong> — Touch perception (somatosensory cortex), body orientation<small>Damage = loss of sensation or spatial awareness</small></div>
+        <div class="simple-box"><strong>Temporal Lobe</strong> — Auditory processing, language comprehension (Wernicke's area), memory<small>Damage = hearing or memory impairment</small></div>
+        <div class="simple-box"><strong>Occipital Lobe</strong> — Sight, visual reception and interpretation<small>Damage = visual disturbances or blindness</small></div>
+    </div>
+    <div class="simple-box"><strong>Cerebellum</strong> — Balance and coordination &nbsp;|&nbsp; <strong>Brainstem</strong> — Involuntary responses (breathing, heart rate)</div>
+    <button class="definition-toggle" onclick="toggleDef(this)">Show More Information</button>
+    <div class="definition-content">
+        <p><strong>Cerebral Cortex:</strong> The largest part of the brain — 83% of its total mass. Controls all higher mental functions including conscious thoughts, experiences and intellectual functions.</p>
+        <br>
+        <p><strong>Localisation of Function — Language:</strong></p>
+        <p>• <strong>Broca's Area (1861):</strong> Located in the frontal lobe. Damage causes motor aphasia — the patient can understand language but cannot speak in full sentences or express ideas in writing.</p>
+        <p>• <strong>Wernicke's Area (1876):</strong> Located in the temporal lobe. Damage causes sensory aphasia — the patient can speak but cannot understand language.</p>
+        <br>
+        <p><strong>Hemispheric Lateralization:</strong></p>
+        <p>• <strong>Left hemisphere (dominant):</strong> reading, writing, mathematics, logic, speech, decision-making</p>
+        <p>• <strong>Right hemisphere:</strong> facial recognition, voice inflections, visual/spatial reasoning, emotion, artistic skills</p>
+        <p>• Each hemisphere controls the <strong>opposite side</strong> of the body (contralateral control)</p>
+        <br>
+        <p><strong>Key brain structures:</strong> Telencephalon (cerebral hemispheres) → Diencephalon (thalamus, hypothalamus) → Mesencephalon (midbrain) → Pons → Cerebellum → Medulla Oblongata</p>
+        <p class="ref-tag">Source: ARU College — Biological Psychology, Week 6 Lecture</p>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: A patient can speak but cannot understand language. Which brain area is most likely damaged?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Broca\'s area damage causes motor aphasia — the patient CAN understand language but CANNOT speak in full sentences.', 'Wernicke\'s area (temporal lobe) controls language comprehension. Damage causes sensory aphasia — the patient can produce speech but cannot understand what is said to them.')">A) Broca's area in the frontal lobe</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The occipital lobe processes visual information — it has no direct role in language comprehension.', 'Wernicke\'s area (temporal lobe) controls language comprehension. Damage causes sensory aphasia — the patient can produce speech but cannot understand what is said to them.')">B) Occipital lobe visual cortex</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! Wernicke\'s area in the temporal lobe handles language comprehension. Damage causes sensory aphasia — speaking is possible but understanding is impaired.', 'Wernicke\'s area (temporal lobe) controls language comprehension. Damage causes sensory aphasia — the patient can produce speech but cannot understand what is said to them.')">C) Wernicke's area in the temporal lobe</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The cerebellum controls balance and coordination — it is not involved in language processing.', 'Wernicke\'s area (temporal lobe) controls language comprehension. Damage causes sensory aphasia — the patient can produce speech but cannot understand what is said to them.')">D) Cerebellum and brainstem</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- SLIDE 4 — Biological: Neurons, Synapses & Neurotransmitters -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge bio-badge">Biological Psychology</span>
+    <h1>Neurons, Synapses &amp; Neurotransmitters</h1>
+    <div class="simple-box"><strong>Action Potential:</strong> The electrical signal that travels along a neuron when it fires — resting potential: <span class="highlight">–70mV</span> → threshold: –55mV → action potential: <span class="highlight">+40mV</span></div>
+    <div class="example-box">
+        <h3>How a Synapse Works — Step by Step</h3>
+        <p>1. Action potential reaches the axon terminal → voltage-gated <strong>Ca²⁺ channels</strong> open</p>
+        <p>2. Calcium triggers <strong>exocytosis</strong> of vesicles containing neurotransmitter</p>
+        <p>3. Vesicles fuse with membrane → neurotransmitters released into <strong>synaptic cleft</strong></p>
+        <p>4. Neurotransmitters bind to receptors on the <strong>postsynaptic cell</strong></p>
+        <p>5. Ion channels open → new electrical signal generated (or inhibited)</p>
+    </div>
+    <button class="definition-toggle" onclick="toggleDef(this)">Show Key Neurotransmitters</button>
+    <div class="definition-content">
+        <p><strong>Key Neurotransmitters and their roles:</strong></p>
+        <p>• <strong>Adrenaline:</strong> Fight or flight — increases heart rate and blood flow in stressful situations</p>
+        <p>• <strong>Noradrenaline:</strong> Concentration — affects attention and responding; contracts blood vessels</p>
+        <p>• <strong>Dopamine:</strong> Pleasure and reward — feelings of pleasure and motivation; linked to addiction</p>
+        <p>• <strong>Serotonin:</strong> Mood — contributes to well-being and happiness; affected by exercise and light</p>
+        <p>• <strong>GABA:</strong> Calming — calms firing nerves in the CNS; low levels cause anxiety</p>
+        <p>• <strong>Acetylcholine:</strong> Learning — involved in thought, memory and muscle activation</p>
+        <p>• <strong>Glutamate:</strong> Memory — most common neurotransmitter; involved in learning and nerve contact formation</p>
+        <p>• <strong>Endorphins:</strong> Euphoria — released during exercise and excitement; reduces pain</p>
+        <br>
+        <p><strong>Repolarisation:</strong> After the action potential, voltage-gated K⁺ channels open, K⁺ flows out, and the membrane repolarises. The Na⁺-K⁺ pump then restores the resting potential of –70mV.</p>
+        <br>
+        <p><strong>Research Methods in Biological Psychology:</strong> Animal studies, case studies, drug therapies, brain scans (PET, EEG, MEG, MRI, fMRI), twin and family studies</p>
+        <p class="ref-tag">Source: ARU College — Biological Psychology, Week 6 Lecture</p>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: Which neurotransmitter is most closely linked to feelings of pleasure, reward and addiction?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Serotonin regulates mood and well-being, but it is not primarily associated with reward and addiction.', 'Dopamine is the neurotransmitter most associated with the reward system — feelings of pleasure, motivation and addictive behaviour. People repeat behaviours that trigger dopamine release.')">A) Serotonin — mood regulation</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'GABA is an inhibitory neurotransmitter that calms the nervous system — it is not associated with pleasure or addiction.', 'Dopamine is the neurotransmitter most associated with the reward system — feelings of pleasure, motivation and addictive behaviour. People repeat behaviours that trigger dopamine release.')">B) GABA — calming agent</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Acetylcholine is involved in learning, memory and muscle activation — not the reward pathway.', 'Dopamine is the neurotransmitter most associated with the reward system — feelings of pleasure, motivation and addictive behaviour. People repeat behaviours that trigger dopamine release.')">C) Acetylcholine — learning</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! Dopamine drives the reward system — pleasure, motivation and addiction. People repeat behaviours that release dopamine, which is why it plays a central role in addiction.', 'Dopamine is the neurotransmitter most associated with the reward system — feelings of pleasure, motivation and addictive behaviour. People repeat behaviours that trigger dopamine release.')">D) Dopamine — pleasure and reward</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- SLIDE 5 — Psychodynamic: Basic Assumptions & The Unconscious -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge psycho-badge">Psychodynamic Approach</span>
+    <h1>Basic Assumptions — Freud &amp; the Unconscious</h1>
+    <div class="simple-box"><strong>Basic Assumption:</strong> Much of human behaviour is driven by <span class="highlight">unconscious forces</span> — thoughts, desires and memories that are repressed because they are disturbing or threatening.</div>
+    <div class="two-col">
+        <div class="simple-box">
+            <strong>Conscious Thoughts</strong><br>
+            Wishes and desires we are aware of or can recall at any moment
+        </div>
+        <div class="simple-box">
+            <strong>Unconscious Forces</strong><br>
+            Repressed desires we cannot voluntarily access — yet they drive our behaviour
+        </div>
+    </div>
+    <div class="example-box">
+        <h3>Three Methods to Access the Unconscious</h3>
+        <p><strong>Free Association:</strong> Client talks freely about whatever enters their mind — uncensored speech reveals unconscious material</p>
+        <p><strong>Dream Interpretation:</strong> Dreams have <em>manifest content</em> (the obvious story) and <em>latent content</em> (the hidden symbolic meaning)</p>
+        <p><strong>Freudian Slips:</strong> Mistakes in everyday speech that reveal unconscious thoughts or wishes — e.g. calling someone the wrong name</p>
+    </div>
+    <button class="definition-toggle" onclick="toggleDef(this)">Show More Information</button>
+    <div class="definition-content">
+        <p><strong>Unconscious Motivation</strong> (Freud): The influence of repressed thoughts, desires or impulses on our conscious thoughts and behaviours. We are not aware of these influences.</p>
+        <br>
+        <p><strong>Free Association in practice:</strong> Freud would ask clients to say whatever came into their heads without filtering. Hesitations, emotional reactions and unexpected connections provided clues to unconscious conflicts.</p>
+        <br>
+        <p><strong>Dream Interpretation:</strong> Freud believed the unconscious mind is less guarded during sleep. Dreams disguise threatening material through symbols. The analyst's job is to decode the latent content from the manifest content.</p>
+        <br>
+        <p><strong>Freudian Slips (Parapraxis):</strong> These are not random errors — Freud argued they reveal what we really think or want but cannot say consciously. Example: A speaker at an event says "I declare this session closed" instead of "open."</p>
+        <p class="ref-tag">Source: ARU College — Psychodynamic Approach, Week 6 Lecture</p>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: In dream interpretation, what term describes the HIDDEN symbolic meaning of a dream?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Manifest content is the obvious surface story of the dream — what you can recall and describe. It is NOT the hidden meaning.', 'Latent content is the hidden, disguised or symbolic meaning beneath the surface of a dream. Freud believed this contained the real unconscious material.')">A) Manifest content</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Free association is a therapy technique, not a term for dream content.', 'Latent content is the hidden, disguised or symbolic meaning beneath the surface of a dream. Freud believed this contained the real unconscious material.')">B) Free association</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! Latent content is the hidden symbolic meaning of the dream. Manifest content is the obvious story. Freud used dream analysis to decode the latent content.', 'Latent content is the hidden, disguised or symbolic meaning beneath the surface of a dream. Freud believed this contained the real unconscious material.')">C) Latent content</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Repression is a defence mechanism that pushes threatening thoughts into the unconscious — it is not a term for dream content.', 'Latent content is the hidden, disguised or symbolic meaning beneath the surface of a dream. Freud believed this contained the real unconscious material.')">D) Repression</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- SLIDE 6 — Psychodynamic: Id, Ego and Superego -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge psycho-badge">Psychodynamic Approach</span>
+    <h1>Id, Ego and Superego</h1>
+    <div class="simple-box" style="text-align:center; font-size:1.05em;">Freud's personality structure = a constant <span class="highlight">battle</span> between three competing forces</div>
+    <div class="three-col">
+        <div class="simple-box">
+            <strong>The ID</strong><br>
+            Primitive, instinctual<br>
+            Drives: sex &amp; aggression<br>
+            Follows: <em>pleasure principle</em><br>
+            <small>Satisfy desires immediately, regardless of consequences</small>
+        </div>
+        <div class="simple-box">
+            <strong>The EGO</strong><br>
+            Rational, realistic<br>
+            Mediates between id and superego<br>
+            Follows: <em>reality principle</em><br>
+            <small>Find socially acceptable ways to satisfy the id</small>
+        </div>
+        <div class="simple-box">
+            <strong>The SUPEREGO</strong><br>
+            Moral conscience<br>
+            Applies parental and societal values<br>
+            Follows: <em>perfection principle</em><br>
+            <small>Idealise and civilise our thoughts and behaviour</small>
+        </div>
+    </div>
+    <div class="example-box">
+        <h3>The Iceberg Analogy</h3>
+        <p>Think of an iceberg: the <strong>conscious mind</strong> (above water) = ego surface. The <strong>preconscious</strong> (just below) = superego. The vast <strong>unconscious</strong> (deep below) = the id and repressed material.</p>
+    </div>
+    <button class="definition-toggle" onclick="toggleDef(this)">Show More Information</button>
+    <div class="definition-content">
+        <p><strong>Development timeline:</strong></p>
+        <p>• The <strong>id</strong> is present from birth — it is entirely unconscious and demands immediate gratification</p>
+        <p>• The <strong>ego</strong> develops from the id during infancy — it learns to delay gratification and find realistic solutions</p>
+        <p>• The <strong>superego</strong> develops from the ego during early childhood — it internalises the moral rules of parents and society</p>
+        <br>
+        <p><strong>When conflict occurs</strong> between the id and superego, the ego experiences anxiety. To manage this anxiety, the ego uses <strong>defence mechanisms</strong> — unconscious strategies to protect the self. Examples:</p>
+        <p>• <strong>Repression:</strong> Pushing threatening thoughts into the unconscious</p>
+        <p>• <strong>Projection:</strong> Attributing your own unacceptable feelings to others</p>
+        <p>• <strong>Sublimation:</strong> Channelling unacceptable urges into socially acceptable activities (e.g. sport)</p>
+        <p>• <strong>Denial:</strong> Refusing to accept a threatening reality</p>
+        <p class="ref-tag">Source: ARU College — Psychodynamic Approach, Week 6 Lecture</p>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: A child wants to take another child's toy in a shop but decides it would be wrong. Which part of the mind is guiding this decision?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The id would have taken the toy immediately — it operates on the pleasure principle with no concern for right or wrong.', 'The superego applies moral values and standards. The child knows it would be wrong — this is the superego following the perfection principle, overriding the id\'s immediate desire.')">A) The id — pleasure principle</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The ego would find a compromise — perhaps asking for the toy or waiting. But the specific knowledge that it "would be wrong" points to the superego.', 'The superego applies moral values and standards. The child knows it would be wrong — this is the superego following the perfection principle, overriding the id\'s immediate desire.')">B) The ego — reality principle</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! The superego follows the perfection principle — it applies moral values and says certain things are wrong. It is the moral conscience of the personality.', 'The superego applies moral values and standards. The child knows it would be wrong — this is the superego following the perfection principle, overriding the id\'s immediate desire.')">C) The superego — perfection principle</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'A defence mechanism is used by the ego to manage conflict between the id and superego — it is not the part making moral judgements.', 'The superego applies moral values and standards. The child knows it would be wrong — this is the superego following the perfection principle, overriding the id\'s immediate desire.')">D) A defence mechanism</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- SLIDE 7 — Psychodynamic: Psychosexual Stages (Oral, Anal, Phallic) -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge psycho-badge">Psychodynamic Approach</span>
+    <h1>The 5 Psychosexual Stages — Part 1</h1>
+    <div class="simple-box">Freud believed personality is <span class="highlight">fixed in the first few years of life</span>. Unresolved conflicts at any stage cause <strong>fixation</strong> — lasting effects on adult personality.</div>
+    <div class="simple-box">
+        <strong>Oral Stage (0–18 months)</strong> — Pleasure centred on the mouth: sucking, biting, breastfeeding<br>
+        <small>Fixation → oral personality: smoking, nail-biting, over-eating, especially under stress</small>
+    </div>
+    <div class="simple-box">
+        <strong>Anal Stage (18–36 months)</strong> — Pleasure focused on bowel/bladder control; first conflict with authority (potty training)<br>
+        <small>Anal-retentive (harsh training) → obsessively tidy, punctual, controlling | Anal-expulsive (lenient training) → messy, disorganised, rebellious</small>
+    </div>
+    <div class="simple-box">
+        <strong>Phallic Stage (3–6 years)</strong> — Pleasure centred on genitals; child becomes aware of anatomical sex differences<br>
+        <small>Oedipus complex (boys) — castration anxiety resolved by identifying with father | Electra complex (girls) — penis envy resolved by identifying with mother</small>
+    </div>
+    <button class="definition-toggle" onclick="toggleDef(this)">Show More Information</button>
+    <div class="definition-content">
+        <p><strong>The Oedipus Complex (Phallic Stage — Boys):</strong></p>
+        <p>A young boy develops unconscious sexual feelings towards his mother and views his father as a rival. He fears his father will castrate him (castration anxiety). To resolve this, he represses his desire for his mother and <strong>identifies with his father</strong> — adopting masculine behaviours and values.</p>
+        <p>Evidence: Freud's Little Hans case study (1909)</p>
+        <br>
+        <p><strong>The Electra Complex (Phallic Stage — Girls):</strong></p>
+        <p>A young girl develops feelings for her father and views her mother as a rival. She experiences penis envy upon realising she does not have a penis. She resolves this by repressing her desire for her father and <strong>identifying with her mother</strong> — adopting feminine characteristics. Freud acknowledged this was less well-defined than the Oedipus complex.</p>
+        <br>
+        <p><strong>Identification:</strong> The process by which children internalise the characteristics and values of the same-sex parent — this is how gender identity and the superego develop.</p>
+        <p class="ref-tag">Source: ARU College — Psychodynamic Approach, Week 6 Lecture</p>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: According to Freud, what resolves the Oedipus complex in boys?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Penis envy is associated with girls in the Electra complex — not the resolution of the Oedipus complex in boys.', 'The Oedipus complex is resolved through identification with the father. The boy represses his desire for his mother and instead copies and adopts the characteristics of his father to avoid castration anxiety.')">A) Developing penis envy</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Free association is a therapy technique, not the mechanism by which the Oedipus complex is resolved.', 'The Oedipus complex is resolved through identification with the father. The boy represses his desire for his mother and instead copies and adopts the characteristics of his father to avoid castration anxiety.')">B) Free association with the therapist</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! The boy resolves castration anxiety by repressing his desire for his mother and identifying with his father — adopting his father\'s characteristics and values.', 'The Oedipus complex is resolved through identification with the father. The boy represses his desire for his mother and instead copies and adopts the characteristics of his father to avoid castration anxiety.')">C) Identifying with the father</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Moving to the latency stage happens naturally — but the mechanism that resolves the Oedipus complex is identification with the father.', 'The Oedipus complex is resolved through identification with the father. The boy represses his desire for his mother and instead copies and adopts the characteristics of his father to avoid castration anxiety.')">D) Moving to the latency stage</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- SLIDE 8 — Psychodynamic: Latent, Genital Stages & Research Methods -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge psycho-badge">Psychodynamic Approach</span>
+    <h1>Psychosexual Stages — Part 2 &amp; Research</h1>
+    <div class="simple-box">
+        <strong>Latency Stage (6 years – puberty)</strong> — Sexual impulses are repressed; libido is dormant<br>
+        <small>Sexual energy redirected to schoolwork, hobbies and same-sex friendships | Fixation → social isolation, insecurity in adulthood</small>
+    </div>
+    <div class="simple-box">
+        <strong>Genital Stage (puberty onwards)</strong> — Libido re-emerges; directed towards romantic/sexual relationships with others<br>
+        <small>Successful resolution = forming a loving one-to-one relationship in adulthood | Fixation → sexual dysfunction or relationship difficulties</small>
+    </div>
+    <div class="example-box">
+        <h3>Research Methods — Psychodynamic Approach</h3>
+        <p><strong>Case Studies:</strong> e.g. Anna O (Bertha Pappenheim) — diagnosed with hysteria by Breuer and Freud; became the basis for psychoanalytic therapy</p>
+        <p><strong>Observations:</strong> Detailed clinical observations of patients during therapy sessions</p>
+        <p><strong>Correlations:</strong> Identifying relationships between early childhood experiences and adult personality traits</p>
+        <p><strong>Little Hans (1909):</strong> Case study used by Freud as evidence for the Oedipus complex</p>
+    </div>
+    <button class="definition-toggle" onclick="toggleDef(this)">Show More Information</button>
+    <div class="definition-content">
+        <p><strong>Anna O (Bertha Pappenheim):</strong> One of the most famous cases in the history of psychology. She presented with symptoms of hysteria — a condition where patients exhibit physical symptoms with no clear physical cause, believed to stem from psychological conflict. Her treatment with Breuer (and later Freud) helped develop the technique of the "talking cure" — the foundation of psychoanalysis.</p>
+        <br>
+        <p><strong>Core Reading:</strong></p>
+        <p>Spielman, Jenkins and Lovett (2020). Chapter 11.2: Freud and the Psychodynamic Perspective. In <em>Psychology 2e</em>. OpenStax: Houston, Texas.</p>
+        <br>
+        <p><strong>Full table of all 5 stages:</strong></p>
+        <p>Oral (0–18m) → Anal (18–36m) → Phallic (3–6yrs) → Latency (6–puberty) → Genital (puberty onwards)</p>
+        <p>Each stage has an erogenous zone, a key conflict, and potential fixation outcomes if unresolved.</p>
+        <p class="ref-tag">Source: ARU College — Psychodynamic Approach, Week 6 Lecture | Spielman et al. (2020) Psychology 2e</p>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: What happens to the libido during the latency stage?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The libido increases dramatically at puberty — but that is the genital stage, not the latency stage.', 'During the latency stage (6 years to puberty), the libido is dormant — sexual impulses are repressed and energy is redirected towards schoolwork, hobbies and same-sex friendships.')">A) It increases dramatically</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Romantic feelings towards peers emerge at the genital stage (puberty), not the latency stage.', 'During the latency stage (6 years to puberty), the libido is dormant — sexual impulses are repressed and energy is redirected towards schoolwork, hobbies and same-sex friendships.')">B) It becomes focused on romantic feelings</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! During the latency stage the libido is dormant — repressed. Sexual energy is redirected towards learning, hobbies and same-sex friendships.', 'During the latency stage (6 years to puberty), the libido is dormant — sexual impulses are repressed and energy is redirected towards schoolwork, hobbies and same-sex friendships.')">C) It is dormant and repressed</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The libido focuses on the mouth during the oral stage, not the latency stage.', 'During the latency stage (6 years to puberty), the libido is dormant — sexual impulses are repressed and energy is redirected towards schoolwork, hobbies and same-sex friendships.')">D) It focuses on the mouth</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- SLIDE 9 — Comparing Both Approaches: Research Methods & Evaluation -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge both-badge">Comparing Both Approaches</span>
+    <h1>Research Methods &amp; Evaluation</h1>
+    <div class="two-col">
+        <div class="example-box">
+            <h3>🧠 Biological — Research Methods</h3>
+            <p>• <strong>Animal studies</strong> — manipulate brain chemistry or structure</p>
+            <p>• <strong>Case studies</strong> — e.g. Phineas Gage (frontal lobe damage)</p>
+            <p>• <strong>Drug therapies</strong> — test effects of changing neurochemistry</p>
+            <p>• <strong>Brain scans:</strong> PET, EEG, MEG, MRI, fMRI</p>
+            <p>• <strong>Twin/family studies</strong> — separate nature from nurture</p>
+        </div>
+        <div class="example-box">
+            <h3>🛋️ Psychodynamic — Research Methods</h3>
+            <p>• <strong>Case studies</strong> — Anna O, Little Hans, Dora</p>
+            <p>• <strong>Observations</strong> — clinical sessions with patients</p>
+            <p>• <strong>Correlations</strong> — childhood experience and adult outcomes</p>
+            <p>• <strong>Dream analysis</strong> — interpreting latent content</p>
+            <p>• <strong>Free association</strong> — uncovering repressed material</p>
+        </div>
+    </div>
+    <button class="definition-toggle" onclick="toggleDef(this)">Show Evaluation Points</button>
+    <div class="definition-content">
+        <p><strong>Biological Approach — Evaluation:</strong></p>
+        <p>✅ <strong>Strength:</strong> Scientific and objective — brain scans provide measurable, replicable evidence</p>
+        <p>✅ <strong>Strength:</strong> Practical applications — drug therapies for depression, anxiety and schizophrenia</p>
+        <p>❌ <strong>Weakness:</strong> Reductionist — reduces complex behaviour to biology; ignores social and cultural factors</p>
+        <p>❌ <strong>Weakness:</strong> Ethical concerns — animal studies cause suffering; brain surgery is irreversible</p>
+        <br>
+        <p><strong>Psychodynamic Approach — Evaluation:</strong></p>
+        <p>✅ <strong>Strength:</strong> Influential — pioneered talking therapies; transformed clinical psychology</p>
+        <p>✅ <strong>Strength:</strong> Recognises the role of childhood in shaping adult personality</p>
+        <p>❌ <strong>Weakness:</strong> Unfalsifiable — unconscious processes cannot be scientifically tested or disproved</p>
+        <p>❌ <strong>Weakness:</strong> Based on unrepresentative samples — mostly white, middle-class Viennese patients; limited generalisability</p>
+        <p>❌ <strong>Weakness:</strong> Gender bias — the Electra complex has been widely criticised as inadequate and sexist</p>
+        <p class="ref-tag">Source: ARU College — Week 6 Lecture | Spielman et al. (2020) Psychology 2e</p>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: Which is a major weakness of the psychodynamic approach when evaluated scientifically?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The psychodynamic approach has been enormously influential in clinical psychology — lack of influence is not its weakness.', 'The key scientific weakness of the psychodynamic approach is that it is unfalsifiable — unconscious processes and repressed memories cannot be directly observed, measured or disproved using scientific methods.')">A) It has had no influence on psychology</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'The psychodynamic approach does focus on childhood — in fact, childhood development is central to Freud\'s theory. This is a strength, not a weakness.', 'The key scientific weakness of the psychodynamic approach is that it is unfalsifiable — unconscious processes and repressed memories cannot be directly observed, measured or disproved using scientific methods.')">B) It ignores childhood experiences</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! The psychodynamic approach is unfalsifiable — you cannot scientifically test or disprove the existence of unconscious processes. This makes it difficult to evaluate as science.', 'The key scientific weakness of the psychodynamic approach is that it is unfalsifiable — unconscious processes and repressed memories cannot be directly observed, measured or disproved using scientific methods.')">C) It is unfalsifiable — cannot be scientifically tested</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Brain scans are a research method used in the biological approach — the psychodynamic approach does not use brain scanning technology.', 'The key scientific weakness of the psychodynamic approach is that it is unfalsifiable — unconscious processes and repressed memories cannot be directly observed, measured or disproved using scientific methods.')">D) It uses too many brain scans</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- SLIDE 10 — Summary -->
+
+<div class="slide" style="display:none;">
+    <div class="aru-logo">
+        <div class="aru-bird">a.r.u.</div>
+        <div class="aru-text">
+            <div class="aru-name">College</div>
+            <div class="aru-sub">Cambridge &amp; Chelmsford</div>
+        </div>
+    </div>
+    <span class="topic-badge both-badge">Week 6 — Full Summary</span>
+    <h1>Psychology Week 6 — Summary</h1>
+    <div class="two-col">
+        <div>
+            <div class="simple-box"><strong>🧠 Nervous System</strong> = CNS (brain + spinal cord) + PNS (somatic + autonomic → sympathetic + parasympathetic)</div>
+            <div class="simple-box"><strong>🧠 Brain Lobes</strong> = Frontal (motor/speech) · Parietal (touch) · Temporal (hearing/memory) · Occipital (vision) · Cerebellum (balance)</div>
+            <div class="simple-box"><strong>🧠 Action Potential</strong> = –70mV rest → –55mV threshold → +40mV peak → repolarise → Na⁺-K⁺ pump restores rest</div>
+            <div class="simple-box"><strong>🧠 Neurotransmitters</strong> = Dopamine (reward) · Serotonin (mood) · GABA (calm) · Adrenaline (fight/flight)</div>
+        </div>
+        <div>
+            <div class="simple-box"><strong>🛋️ Unconscious</strong> = Free association · Dream interpretation (manifest vs latent) · Freudian slips</div>
+            <div class="simple-box"><strong>🛋️ Personality</strong> = Id (pleasure) · Ego (reality) · Superego (perfection) → conflict → defence mechanisms</div>
+            <div class="simple-box"><strong>🛋️ 5 Stages</strong> = Oral · Anal · Phallic (Oedipus/Electra) · Latency · Genital</div>
+            <div class="simple-box"><strong>🛋️ Research</strong> = Case studies (Anna O, Little Hans) · Observations · Correlations</div>
+        </div>
+    </div>
+    <div class="mcq-section">
+        <div class="mcq-question">Question: Which statement BEST summarises the fundamental difference between biological and psychodynamic explanations of behaviour?</div>
+        <ul class="mcq-options">
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Both approaches have weaknesses and both have contributed to psychology — neither is simply invalid.', 'Biological psychology explains behaviour through measurable brain and body processes. Psychodynamic explains behaviour through unmeasurable unconscious mental forces. Both agree behaviour has internal causes — just very different ones.')">A) Biological is valid; psychodynamic is not</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Both approaches argue behaviour has internal causes — they just define those causes very differently.', 'Biological psychology explains behaviour through measurable brain and body processes. Psychodynamic explains behaviour through unmeasurable unconscious mental forces. Both agree behaviour has internal causes — just very different ones.')">B) Both explain behaviour through external social forces</li>
+            <li class="mcq-option" onclick="checkAnswer(this, true, 'Correct! Biological = measurable physical processes in the brain and body. Psychodynamic = unmeasurable unconscious mental forces shaped by early experience. Two complementary lenses on human behaviour.', 'Biological psychology explains behaviour through measurable brain and body processes. Psychodynamic explains behaviour through unmeasurable unconscious mental forces. Both agree behaviour has internal causes — just very different ones.')">C) Biological = physical brain processes; Psychodynamic = unconscious mental forces</li>
+            <li class="mcq-option" onclick="checkAnswer(this, false, 'Freud focused on the mind and unconscious — neurotransmitters and brain anatomy are part of the biological approach, not Freud\'s work.', 'Biological psychology explains behaviour through measurable brain and body processes. Psychodynamic explains behaviour through unmeasurable unconscious mental forces. Both agree behaviour has internal causes — just very different ones.')">D) Freud discovered neurotransmitters and brain lobes</li>
+        </ul>
+        <div class="mcq-feedback"></div>
+    </div>
+</div>
+
+<!-- Navigation -->
+
+<div class="navigation">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <div class="progress">Slide <span id="slideNumber">1</span> / <span id="totalSlides">10</span></div>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</div>
+
+</div>
+
+<script>
+    let currentSlide = 1;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    document.getElementById('totalSlides').textContent = totalSlides;
+
+    function showSlide(n) {
+        if (n > totalSlides) currentSlide = totalSlides;
+        if (n < 1) currentSlide = 1;
+        slides.forEach(s => s.style.display = 'none');
+        slides[currentSlide - 1].style.display = 'block';
+        document.getElementById('slideNumber').textContent = currentSlide;
+        document.getElementById('prevBtn').disabled = (currentSlide === 1);
+        document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+        document.querySelectorAll('.mcq-option').forEach(o => {
+            o.classList.remove('correct', 'incorrect');
+            o.style.pointerEvents = 'auto';
+        });
+        document.querySelectorAll('.mcq-feedback').forEach(f => {
+            f.classList.remove('show', 'correct-feedback', 'incorrect-feedback');
+            f.textContent = '';
+        });
+        window.scrollTo(0, 0);
+    }
+
+    function changeSlide(dir) { currentSlide += dir; showSlide(currentSlide); }
+
+    function toggleDef(btn) {
+        const content = btn.nextElementSibling;
+        content.classList.toggle('show');
+        btn.textContent = content.classList.contains('show') ? 'Hide Information' : 'Show More Information';
+    }
+
+    function checkAnswer(option, isCorrect, explanation, correctExplanation) {
+        const allOptions = option.parentElement.querySelectorAll('.mcq-option');
+        const feedback = option.closest('.mcq-section').querySelector('.mcq-feedback');
+        allOptions.forEach(o => o.style.pointerEvents = 'none');
+        if (isCorrect) {
+            option.classList.add('correct');
+            feedback.textContent = 'Correct! ' + correctExplanation;
+            feedback.classList.add('show', 'correct-feedback');
+        } else {
+            option.classList.add('incorrect');
+            allOptions.forEach(o => {
+                if (o.getAttribute('onclick') && o.getAttribute('onclick').includes('true')) o.classList.add('correct');
+            });
+            feedback.textContent = 'Not quite. ' + explanation;
+            feedback.classList.add('show', 'incorrect-feedback');
+        }
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft' && currentSlide > 1) changeSlide(-1);
+        if (e.key === 'ArrowRight' && currentSlide < totalSlides) changeSlide(1);
+    });
+
+    showSlide(1);
+</script>
+
+</body>
+</html>
